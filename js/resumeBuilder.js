@@ -1,6 +1,5 @@
-/*
-This is empty on purpose! Your code to build the resume will go here.
-*/
+// This is empty on purpose! Your code to build the resume will go here.
+
 
 // Header section
 
@@ -26,18 +25,12 @@ var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
 $("#header").prepend(formattedRole);
 $("#header").prepend(formattedName);
 
-if("skills" in bio) {
+if(bio.skills.length > 0) {
   $("#header").append(HTMLskillsStart);
-  var formattedSkills = HTMLskills.replace("%data%", bio.skills[0]);
-  $("#skills").append(formattedSkills);
-  var formattedSkills = HTMLskills.replace("%data%", bio.skills[1]);
-  $("#skills").append(formattedSkills);
-  var formattedSkills = HTMLskills.replace("%data%", bio.skills[2]);
-  $("#skills").append(formattedSkills);
-  var formattedSkills = HTMLskills.replace("%data%", bio.skills[3]);
-  $("#skills").append(formattedSkills);
-  var formattedSkills = HTMLskills.replace("%data%", bio.skills[4]);
-  $("#skills").append(formattedSkills);
+  bio.skills.forEach(function(skill) {
+    var formattedSkills = HTMLskills.replace("%data%", skill);
+    $("#skills").append(formattedSkills);
+  });
 }
 
 //
@@ -86,24 +79,42 @@ var work = {
   ]
 };
 
-for (jobs in work.jobs) {
+if(work.jobs.length > 0) {
   $("#workExperience").append(HTMLworkStart);
+  work.jobs.forEach(function(job) {
+    var formattedEmployer = HTMLworkEmployer.replace("%data%", job.employer);
+    var formattedTitle = HTMLworkTitle.replace("%data%", job.title);
+    $(".work-entry:last").append(formattedEmployer + formattedTitle);
 
-  var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[jobs].employer);
-  var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[jobs].title)
-  var formattedEmployerTitle = formattedEmployer + formattedTitle;
-  $(".work-entry:last").append(formattedEmployerTitle);
+    var formattedWorkLocation = HTMLworkLocation.replace("%data%", job.location);
+    $(".work-entry:last").append(formattedWorkLocation);
 
-  var formattedWorkLocation = HTMLworkLocation.replace("%data%", work.jobs[jobs].location);
-  $(".work-entry:last").append(formattedWorkLocation);
+    var formattedWorkDates = HTMLworkDates.replace("%data%", job.dates);
+    $(".work-entry:last").append(formattedWorkDates);
 
-  var formattedWorkDates = HTMLworkDates.replace("%data%", work.jobs[jobs].dates);
-  $(".work-entry:last").append(formattedWorkDates);
-
-  var formattedWorkDescription = HTMLworkDescription.replace("%data%", work.jobs[jobs].description);
-  $(".work-entry:last").append(formattedWorkDescription);
-  
+    var formattedWorkDescription = HTMLworkDescription.replace("%data%", job.description);
+    $(".work-entry:last").append(formattedWorkDescription);
+  })
 }
+
+// for (jobs in work.jobs) {
+//   $("#workExperience").append(HTMLworkStart);
+//
+//   var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[jobs].employer);
+//   var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[jobs].title)
+//   var formattedEmployerTitle = formattedEmployer + formattedTitle;
+//   $(".work-entry:last").append(formattedEmployerTitle);
+//
+//   var formattedWorkLocation = HTMLworkLocation.replace("%data%", work.jobs[jobs].location);
+//   $(".work-entry:last").append(formattedWorkLocation);
+//
+//   var formattedWorkDates = HTMLworkDates.replace("%data%", work.jobs[jobs].dates);
+//   $(".work-entry:last").append(formattedWorkDates);
+//
+//   var formattedWorkDescription = HTMLworkDescription.replace("%data%", work.jobs[jobs].description);
+//   $(".work-entry:last").append(formattedWorkDescription);
+// }
+
 
 var projects = {
   "projects": [
