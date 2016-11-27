@@ -62,6 +62,7 @@ var googleMap = '<div id="map"></div>';
 /*
 The Internationalize Names challenge found in the lesson Flow Control from JavaScript Basics requires you to create a function that will need this helper code to run. Don't delete! It hooks up your code to the button you'll be appending.
 */
+
 $(document).ready(function() {
   $('button').click(function() {
     var $name = $('#name');
@@ -70,6 +71,13 @@ $(document).ready(function() {
   });
 });
 
+function inName(name) {
+  name = bio.name.trim().split(" ");
+  name[1] = name[1].toUpperCase();
+  name[0] = name[0].slice(0,1).toUpperCase() +
+  name[0].slice(1).toLowerCase();
+  return name[0] + " " + name[1];
+};
 /*
 The next few lines about clicks are for the Collecting Click Locations quiz in the lesson Flow Control from JavaScript Basics.
 */
@@ -86,10 +94,10 @@ function logClicks(x,y) {
 }
 
 $(document).click(function(loc) {
-  // your code goes here!
+  var x = loc.pageX;
+  var y = loc.pageY;
+  logClicks(x, y);
 });
-
-
 
 /*
 This is the fun part. Here's where we generate the custom Google Map for the website.
@@ -210,7 +218,7 @@ function initializeMap() {
     var service = new google.maps.places.PlacesService(map);
 
     // Iterates through the array of locations, creates a search object for each location
-      locations.forEach(function(place){
+    locations.forEach(function(place){
       // the search request object
       var request = {
         query: place
@@ -244,6 +252,6 @@ Uncomment the code below when you're ready to implement a Google Map!
 // Vanilla JS way to listen for resizing of the window
 // and adjust map bounds
 //window.addEventListener('resize', function(e) {
-  //Make sure the map bounds get updated on page resize
+//Make sure the map bounds get updated on page resize
 //  map.fitBounds(mapBounds);
 //});
