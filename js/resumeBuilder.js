@@ -65,14 +65,14 @@ var work = {
     {
       "employer": "Privet",
       "title": "Poka",
-      "location": "Russland",
+      "location": "Miass, Russia",
       "dates": "2002",
       "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
     },
     {
       "employer": "KakDela",
       "title": "WEDS",
-      "location": "MN",
+      "location": "Grand Maris, MN",
       "dates": "2012",
       "description": " Fusce finibus, eros sed interdum faucibus, diam diam rhoncus arcu, vitae condimentum est libero non nisi."
     }
@@ -120,6 +120,7 @@ workSection();
 //   $(".work-entry:last").append(formattedWorkDescription);
 // }
 
+// Projects section
 
 var projects = {
   "projects": [
@@ -144,6 +145,35 @@ var projects = {
   ]
 };
 
+projects.display = function() {
+
+  projects.projects.forEach(function(project){
+    if(projects.projects.length > 0) {
+      $("#projects").append(HTMLprojectStart);
+    };
+
+    var formattedProjectTitle = HTMLprojectTitle.replace("%data%", project.title);
+    $(".project-entry:last").append(formattedProjectTitle);
+
+    var formattedProjectDate = HTMLprojectDates.replace("%data%", project.dates);
+    $(".project-entry:last").append(formattedProjectDate);
+
+    var formattedProjectDescription = HTMLprojectDescription.replace("%data%", project.description);
+    $(".project-entry:last").append(formattedProjectDescription);
+
+    if(project.img.length > 0) {
+      project.img.forEach(function(img) {
+        var formattedProjectImage = HTMLprojectImage.replace("%data%", img);
+        $(".project-entry:last").append(formattedProjectImage);
+      })
+    }
+  })
+}
+
+projects.display();
+
+// Education section
+
 var education = {
   "schools": {
     "name": "South Ural State University",
@@ -161,4 +191,9 @@ var education = {
   }
 };
 
+// internationalize Button
 $("#main").append(internationalizeButton);
+
+// Google map
+
+$("#mapDiv").append(googleMap);
