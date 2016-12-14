@@ -163,7 +163,7 @@ var projects = {
 
 projects.display = function() {
 
-  projects.projects.forEach(function(project){
+  projects.projects.forEach(function(project) {
     if(projects.projects.length > 0) {
       $("#projects").append(HTMLprojectStart);
     };
@@ -191,21 +191,65 @@ projects.display();
 // Education section
 
 var education = {
-  "schools": {
-    "name": "South Ural State University",
-    "location": "Chelyabinsk, Russia",
-    "degree": "Bachelor",
-    "major": "Managment",
-    "dates": "2011-2015",
-    "url": "https://www.susu.ru/en"
-  },
-  "online coursies": {
-    "title": "Front-end Nanodegree",
-    "school": "Udacity",
-    "dates": "2016-2017",
-    "url": "https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001"
-  }
+  "schools": [
+    {
+      "name": "South Ural State University",
+      "location": "Chelyabinsk, Russia",
+      "degree": "Bachelor",
+      "major": "Managment",
+      "dates": "2011-2015",
+      "url": "https://www.susu.ru/en"
+    },
+    {
+      "name": "Lorem ipsum dolor sit amet",
+      "location": "Auckland, New Zeland",
+      "degree": "Bachelor",
+      "major": "Ipsum",
+      "dates": "2008 - 2012",
+      "url": "http://www.aucklandnz.com/"
+    }
+  ],
+  "online coursies": [
+    {
+      "title": "Front-end Nanodegree",
+      "school": "Udacity",
+      "dates": "2016-2017",
+      "url": "https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001"
+    },
+    {
+      "title": "Lorem Web Developer",
+      "school": "Codeschool",
+      "date": "2015",
+      "url": "https://lipsum.com"
+    }
+  ]
 };
+
+
+education.display = function() {
+
+  for (var i = 0; i < education.schools.length; i++) {
+    $("#education").append(HTMLschoolStart);
+
+    var formattedSchoolName = HTMLschoolName.replace("%data%", education.schools[i].name).replace("#", education.schools[i].url);
+    var formattedSchooldDegree = HTMLschoolDegree.replace("%data%", education.schools[i].degree);
+    var formattedSchoolNameDegree = formattedSchoolName + formattedSchooldDegree;
+    $(".education-entry:last").append(formattedSchoolNameDegree);
+
+    var formattedSchooldDates = HTMLschoolDates.replace("%data%", education.schools[i].dates);
+    $(".education-entry:last").append(formattedSchooldDates);
+
+    var formattedSchoolLocation = HTMLschoolLocation.replace("%data%", education.schools[i].location);
+    $(".education-entry:last").append(formattedSchoolLocation);
+
+    var formattedSchooldMajor = HTMLschoolMajor.replace("%data%", education.schools[i].major);
+    $(".education-entry:last").append(formattedSchooldMajor);
+
+  }
+
+}
+
+education.display();
 
 // internationalize Button
 $("#main").append(internationalizeButton);
