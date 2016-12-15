@@ -77,7 +77,7 @@ function inName(name) {
   name[0] = name[0].slice(0,1).toUpperCase() +
   name[0].slice(1).toLowerCase();
   return name[0] + " " + name[1];
-};
+}
 /*
 The next few lines about clicks are for the Collecting Click Locations quiz in the lesson Flow Control from JavaScript Basics.
 */
@@ -135,7 +135,7 @@ function initializeMap() {
     var locations = [];
 
     // adds the single location property from bio to the locations array
-    locations.push(bio.contactInfo.location);
+    locations.push(bio.contacts.location);
 
     // iterates through school locations and appends each location to
     // the locations array. Note that forEach is used for array iteration
@@ -143,7 +143,7 @@ function initializeMap() {
     // https://udacity.github.io/frontend-nanodegree-styleguide/javascript.html#for-in-loop
     education.schools.forEach(function(school) {
       locations.push(school.location);
-    })
+    });
 
     // iterates through work locations and appends each location to
     // the locations array. Note that forEach is used for array iteration
